@@ -39,9 +39,6 @@ app.post('/create-checkout-session', async (req, res) => {
       customer_email: email || undefined,
       billing_address_collection: 'auto',
       phone_number_collection: { enabled: false },
-      saved_payment_method_options: {
-        payment_method_save: 'disabled',
-      },
       success_url: `${baseUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cancel.html`,
       metadata: {
