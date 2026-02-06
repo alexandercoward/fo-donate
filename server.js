@@ -37,7 +37,11 @@ app.post('/create-checkout-session', async (req, res) => {
     let sessionConfig = {
       payment_method_types: ['card'],
       customer_email: email || undefined,
-      billing_address_collection: 'required',
+      billing_address_collection: 'auto',
+      phone_number_collection: { enabled: false },
+      saved_payment_method_options: {
+        payment_method_save: 'disabled',
+      },
       success_url: `${baseUrl}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cancel.html`,
       metadata: {
