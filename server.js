@@ -60,7 +60,7 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: 'Monthly Donation to Fair Observer',
-            description: 'Thank you for your recurring support!',
+            description: 'Fair Observer is a 501(c)(3) non-profit news organization. Our mission is to educate global citizens of today and tomorrow. We are solely supported by donations. Thank you for your support.',
           },
           unit_amount: amountInCents,
           recurring: {
@@ -77,7 +77,7 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: 'Donation to Fair Observer',
-            description: 'Thank you for your support!',
+            description: 'Fair Observer is a 501(c)(3) non-profit news organization. Our mission is to educate global citizens of today and tomorrow. We are solely supported by donations. Thank you for your support.',
           },
           unit_amount: amountInCents,
         },
