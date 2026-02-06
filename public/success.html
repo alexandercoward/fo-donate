@@ -180,7 +180,6 @@
 <body>
   <header class="page-header">
     <h1>Thank You</h1>
-    <p>Your generosity makes independent journalism possible.</p>
   </header>
 
   <div class="container">
@@ -191,7 +190,7 @@
         </svg>
       </div>
 
-      <p class="message">Your donation to Fair Observer has been received. We deeply appreciate your support in our mission to educate global citizens of today and tomorrow.</p>
+      <p class="message">Your donation to Fair Observer has been received. We deeply appreciate your support.</p>
 
       <div class="details" id="details" style="display: none;">
         <p><strong>Name</strong> <span id="donor-name"></span></p>
@@ -202,11 +201,16 @@
 
       <p class="redirect-note">Redirecting to Fair Observer in <span id="countdown">5</span> seconds...</p>
 
-      <a href="https://fairobserver.com" class="back-link">Return to Fair Observer</a>
+      <a href="#" class="back-link" id="back-link">Return to Fair Observer</a>
     </div>
   </div>
 
   <script>
+    // Determine redirect URL based on current domain
+    const isXyz = window.location.hostname.includes('.xyz');
+    const redirectUrl = isXyz ? 'https://fairobserver.xyz' : 'https://fairobserver.com';
+    document.getElementById('back-link').href = redirectUrl;
+
     const urlParams = new URLSearchParams(window.location.search);
     const sessionId = urlParams.get('session_id');
 
@@ -233,7 +237,7 @@
       countdownEl.textContent = seconds;
       if (seconds <= 0) {
         clearInterval(timer);
-        window.location.href = 'https://fairobserver.com';
+        window.location.href = redirectUrl;
       }
     }, 1000);
   </script>

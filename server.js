@@ -28,10 +28,14 @@ app.post('/create-checkout-session', async (req, res) => {
   const amountInCents = Math.round(amount * 100);
   const fullName = `${firstName} ${lastName}`.trim();
 
-  // Determine base URL for redirects
-  const baseUrl = process.env.NODE_ENV === 'production'
-    ? 'https://donate.fairobserver.com'
-    : req.headers.origin || `http://localhost:${process.env.PORT || 3000}`;
+  // Determine base URL for redirects (use same domain as request)
+  let baseUrl;
+  if (process.env.NODE_ENV === 'production') {
+    const host = req.headers.host || '';
+    baseUrl = host.includes('.xyz') ? 'https://donate.fairobserver.xyz' : 'https://donate.fairobserver.com';
+  } else {
+    baseUrl = req.headers.origin || `http://localhost:${process.env.PORT || 3000}`;
+  }
 
   try {
     let sessionConfig = {
